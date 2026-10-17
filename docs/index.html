@@ -1,0 +1,172 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>K5K Virtual - sintetizador aditivo gratuito</title>
+<meta name="description" content="K5K Virtual: sintetizador aditivo gratuito para Windows inspirado no K5000S, com 128 harmonicos, filtro de formantes, 100 timbres e plugin VST3.">
+<meta property="og:title" content="K5K Virtual">
+<meta property="og:description" content="Sintetizador aditivo gratuito para Windows, inspirado no K5000S. Aplicativo e plugin VST3.">
+<meta property="og:image" content="https://helicleiton.github.io/K5K/screenshot.png">
+<link rel="icon" type="image/png" href="icon.png">
+<style>
+  :root { --bg:#111214; --panel:#16171a; --edge:#2a2c31; --text:#ecebe8; --dim:#8a8d93; --accent:#c5d86d; --navy:#1a2e40; }
+  * { box-sizing:border-box; }
+  body { margin:0; background:var(--bg); color:var(--text); font:16px/1.6 "Segoe UI",system-ui,-apple-system,Roboto,Arial,sans-serif; }
+  a { color:var(--accent); }
+  .wrap { max-width:1040px; margin:0 auto; padding:0 20px; }
+  header { padding:28px 0 8px; display:flex; align-items:center; justify-content:space-between; gap:16px; flex-wrap:wrap; }
+  .mark { display:flex; align-items:center; gap:12px; letter-spacing:.24em; font-size:17px; text-decoration:none; color:var(--text); }
+  .mark img { width:30px; height:30px; border-radius:7px; }
+  .mark b { font-weight:700; } .mark span { color:var(--dim); }
+  nav a { color:var(--dim); text-decoration:none; margin-left:18px; font-size:14px; }
+  nav a:hover { color:var(--text); }
+  .hero { padding:44px 0 28px; }
+  h1 { font-size:clamp(30px,5vw,48px); line-height:1.15; margin:0 0 14px; }
+  h1 em { color:var(--accent); font-style:normal; }
+  .lead { color:var(--dim); font-size:18px; max-width:740px; margin:0 0 26px; }
+  .cta { display:flex; gap:12px; flex-wrap:wrap; align-items:center; }
+  .btn { display:inline-block; padding:13px 24px; border-radius:6px; text-decoration:none; font-weight:600; border:1px solid var(--edge); color:var(--text); }
+  .btn.primary { background:var(--accent); border-color:var(--accent); color:#16171a; }
+  .note { color:var(--dim); font-size:13px; margin-top:12px; }
+  .shot { margin:34px 0 8px; border:1px solid var(--edge); border-radius:8px; overflow:hidden; background:var(--panel); }
+  .shot img { display:block; width:100%; height:auto; }
+  h2 { font-size:13px; letter-spacing:.16em; text-transform:uppercase; color:var(--dim); margin:56px 0 18px; }
+  .grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(280px,1fr)); gap:12px; }
+  .card { background:var(--panel); border:1px solid var(--edge); border-radius:6px; padding:18px 20px; }
+  .card h3 { margin:0 0 6px; font-size:17px; } .card p { margin:0; color:var(--dim); font-size:15px; }
+  .banks { display:grid; grid-template-columns:repeat(auto-fit,minmax(min(100%,460px),1fr)); gap:12px; }
+  .bank { background:var(--panel); border:1px solid var(--edge); border-radius:6px; padding:16px 18px; }
+  .bank h3 { margin:0 0 10px; font-size:16px; }
+  .bank ol { columns:2; column-gap:22px; margin:0; padding-left:0; list-style:none; font-size:14px; }
+  .bank li { margin:2px 0; break-inside:avoid; color:var(--text); }
+  .bank li b { color:var(--accent); font-family:Consolas,monospace; font-weight:600; margin-right:6px; }
+  .bank li span { color:var(--dim); font-size:12px; margin-left:4px; }
+  table { width:100%; border-collapse:collapse; background:var(--panel); border:1px solid var(--edge); border-radius:6px; overflow:hidden; font-size:15px; }
+  th, td { text-align:left; padding:11px 16px; border-bottom:1px solid var(--edge); vertical-align:top; }
+  th { color:var(--dim); font-weight:600; font-size:13px; letter-spacing:.06em; text-transform:uppercase; }
+  tr:last-child td { border-bottom:0; } td:first-child { white-space:nowrap; font-weight:600; }
+  @media (max-width:560px) { td:first-child { white-space:normal; } th, td { padding:9px 10px; } .bank ol { columns:1; } }
+  ol.steps { padding-left:22px; } ol.steps li { margin:6px 0; }
+  .warn { border-left:3px solid var(--accent); background:var(--panel); padding:16px 20px; border-radius:0 6px 6px 0; }
+  .warn h3 { margin:0 0 6px; font-size:16px; } .warn p { margin:6px 0 0; color:var(--dim); font-size:15px; }
+  code { background:#0b0c0d; border:1px solid var(--edge); border-radius:4px; padding:1px 6px; font-size:14px; }
+  footer { color:var(--dim); font-size:13px; border-top:1px solid var(--edge); margin-top:64px; padding:26px 0 40px; }
+  footer p { margin:6px 0; }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <a class="mark" href="./"><img src="icon.png" alt=""><b>K5K</b><span>VIRTUAL</span></a>
+    <nav>
+      <a href="#recursos">Recursos</a>
+      <a href="#timbres">Timbres</a>
+      <a href="#instalar">Instalar</a>
+      <a href="https://www.helicleiton.com/#apps">Outros apps</a>
+    </nav>
+  </header>
+
+  <section class="hero">
+    <h1>Síntese aditiva <em>de 128 harmônicos</em>, grátis no seu Windows.</h1>
+    <p class="lead">O K5K Virtual é um sintetizador aditivo inspirado no clássico K5000S: cada som é montado harmônico por harmônico,
+      com envelopes próprios, filtro de formantes e um painel que lembra o instrumento original. Use como aplicativo ou como plugin VST3.</p>
+    <div class="cta">
+      <a class="btn primary" href="https://github.com/helicleiton/K5K/releases/latest/download/K5K-Setup.exe">Baixar instalador</a>
+      <a class="btn" href="https://github.com/helicleiton/K5K/releases/latest/download/K5K-win64.zip">Versão portátil (.zip)</a>
+    </div>
+    <p class="note">Versão 0.1.0 · Windows 10 e 11 (64 bits) · Aplicativo + plugin VST3 · Gratuito</p>
+    <div class="shot"><img src="screenshot.png" alt="Painel do K5K Virtual com LCD, knobs, rodas de pitch e modulação e teclado de 61 teclas" width="1358" height="480"></div>
+  </section>
+
+  <h2 id="recursos">Recursos</h2>
+  <div class="grid">
+    <div class="card"><h3>Motor aditivo</h3><p>Até 128 harmônicos por voz, com níveis soft e loud que mudam o timbre conforme a força da nota.</p></div>
+    <div class="card"><h3>Envelope por harmônico</h3><p>Cada harmônico tem o seu próprio envelope de quatro estágios, com loops que fazem o som se mover no sustain.</p></div>
+    <div class="card"><h3>Filtro de formantes</h3><p>128 bandas espaçadas por semitom, com bias, envelope e LFO para vozes, vogais e varreduras.</p></div>
+    <div class="card"><h3>Camadas e efeitos</h3><p>Camada de onda sintética, LFO com vibrato, growl e tremolo, filtro DCF, chorus e reverb definidos por timbre.</p></div>
+    <div class="card"><h3>Painel completo</h3><p>LCD com espectro dos harmônicos em tempo real, 16 knobs, dial VALUE, teclado numérico e rodas de pitch e modulação.</p></div>
+    <div class="card"><h3>Bancos SysEx</h3><p>Abre arquivos <code>.syx</code> no formato do K5000 com o botão "Carregar .syx", com verificação de checksum.</p></div>
+  </div>
+
+  <h2 id="timbres">100 timbres prontos</h2>
+  <p style="color:var(--dim);margin-top:-6px">Os bancos A e D seguem a numeração e os nomes da lista de fábrica do K5000S. São recriações feitas para o K5K Virtual
+    a partir da categoria e do caráter de cada som, não os dados originais.</p>
+  <div class="banks">
+    <div class="bank">
+      <h3>Banco A (A001–A060)</h3>
+      <ol>
+        <li><b>A001</b>Runner<span>SFX</span></li><li><b>A002</b>Gorgizmo<span>SFX</span></li><li><b>A003</b>DstPulse<span>Lead</span></li>
+        <li><b>A004</b>TelMetal<span>SEQ</span></li><li><b>A005</b>Driver<span>Techno</span></li><li><b>A006</b>Reznator<span>Bass</span></li>
+        <li><b>A007</b>GOOM<span>Lead</span></li><li><b>A008</b>Heaven<span>TXT Pad</span></li><li><b>A009</b>Creaturz<span>TXT Pad</span></li>
+        <li><b>A010</b>K-Bells<span>Percus</span></li><li><b>A011</b>Hardcore<span>Techno</span></li><li><b>A012</b>Mentara<span>Lead</span></li>
+        <li><b>A013</b>Shakkiri<span>Lead</span></li><li><b>A014</b>Tweeky<span>Lead</span></li><li><b>A015</b>Tangeri<span>Lead</span></li>
+        <li><b>A016</b>Rasty<span>Lead</span></li><li><b>A017</b>Pyper<span>Lead</span></li><li><b>A018</b>Clavaxx<span>Polysyn</span></li>
+        <li><b>A019</b>BrasMorf<span>Polysyn</span></li><li><b>A020</b>Insyncer<span>Polysyn</span></li><li><b>A021</b>Fusiac<span>Polysyn</span></li>
+        <li><b>A022</b>HyprWyr<span>Polysyn</span></li><li><b>A023</b>History<span>Polysyn</span></li><li><b>A024</b>Launcher<span>Polysyn</span></li>
+        <li><b>A025</b>Wintage<span>Polysyn</span></li><li><b>A026</b>LeadVox<span>Polysyn</span></li><li><b>A027</b>VooCoo<span>Polysyn</span></li>
+        <li><b>A028</b>Sweepipe<span>Polysyn</span></li><li><b>A029</b>Formanta<span>Polysyn</span></li><li><b>A030</b>HardFaze<span>TXT Pad</span></li>
+        <li><b>A031</b>TalkGlas<span>TXT Pad</span></li><li><b>A032</b>Eaglelan<span>TXT Pad</span></li><li><b>A033</b>Bee3Pad<span>TXT Pad</span></li>
+        <li><b>A034</b>Zisch<span>TXT Pad</span></li><li><b>A035</b>WheelPad<span>BG Pad</span></li><li><b>A036</b>HotSweet<span>BG Pad</span></li>
+        <li><b>A037</b>Engage<span>BG Pad</span></li><li><b>A038</b>Starship<span>Techno</span></li><li><b>A039</b>RaveRizm<span>Techno</span></li>
+        <li><b>A040</b>TB5005<span>Techno</span></li><li><b>A041</b>Frogga<span>Techno</span></li><li><b>A042</b>TeknoBas<span>Techno</span></li>
+        <li><b>A043</b>RoboBass<span>Bass</span></li><li><b>A044</b>Basstron<span>Bass</span></li><li><b>A045</b>DooBass<span>Bass</span></li>
+        <li><b>A046</b>YazzaY<span>Percus</span></li><li><b>A047</b>Richness<span>Percus</span></li><li><b>A048</b>HolyVibe<span>Percus</span></li>
+        <li><b>A049</b>Plukk<span>Percus</span></li><li><b>A050</b>Seaworld<span>SFX</span></li><li><b>A051</b>4thPlane<span>SFX</span></li>
+        <li><b>A052</b>Moduar<span>SFX</span></li><li><b>A053</b>Chimera<span>SFX</span></li><li><b>A054</b>Opposite<span>SFX</span></li>
+        <li><b>A055</b>Nebular<span>SFX</span></li><li><b>A056</b>Melmaker<span>SFX</span></li><li><b>A057</b>Rippin<span>SFX</span></li>
+        <li><b>A058</b>Ultimate<span>SEQ</span></li><li><b>A059</b>Talkie<span>SEQ</span></li><li><b>A060</b>Mices<span>SEQ</span></li>
+      </ol>
+    </div>
+    <div class="bank">
+      <h3>Banco D (D001–D040)</h3>
+      <ol>
+        <li><b>D001</b>DaLead<span>Lead</span></li><li><b>D002</b>Dinosaur<span>Lead</span></li><li><b>D003</b>OtaStack<span>Lead</span></li>
+        <li><b>D004</b>NoisyLD<span>Lead</span></li><li><b>D005</b>Sunset<span>Lead</span></li><li><b>D006</b>TNT5000<span>Polysynth</span></li>
+        <li><b>D007</b>Fantapol<span>Polysynth</span></li><li><b>D008</b>K.Lite<span>Polysynth</span></li><li><b>D009</b>Jumper<span>Polysynth</span></li>
+        <li><b>D010</b>VelSquar<span>Polysynth</span></li><li><b>D011</b>Entrance<span>Polysynth</span></li><li><b>D012</b>HerrFumy<span>Polysynth</span></li>
+        <li><b>D013</b>UndaWear<span>Polysynth</span></li><li><b>D014</b>Morphos<span>Polysynth</span></li><li><b>D015</b>Gulliver<span>TXT Pad</span></li>
+        <li><b>D016</b>Monks<span>TXT Pad</span></li><li><b>D017</b>K-Philes<span>TXT Pad</span></li><li><b>D018</b>Hot Spot<span>TXT Pad</span></li>
+        <li><b>D019</b>FloorSaw<span>BG Pad</span></li><li><b>D020</b>Scotty<span>BG Pad</span></li><li><b>D021</b>Peaceful<span>BG Pad</span></li>
+        <li><b>D022</b>Breathy<span>BG Pad</span></li><li><b>D023</b>VoiceStr<span>BG Pad</span></li><li><b>D024</b>Chamber<span>BG Pad</span></li>
+        <li><b>D025</b>Interpol<span>BG Pad</span></li><li><b>D026</b>O-Tone<span>BG Pad</span></li><li><b>D027</b>Raver<span>Techno</span></li>
+        <li><b>D028</b>FFBass<span>Bass</span></li><li><b>D029</b>Crystalz<span>Percus</span></li><li><b>D030</b>WireTrap<span>Percus</span></li>
+        <li><b>D031</b>CybaStrt<span>Percus</span></li><li><b>D032</b>Vector<span>Percus</span></li><li><b>D033</b>Nylong<span>Percus</span></li>
+        <li><b>D034</b>BellEcho<span>Percus</span></li><li><b>D035</b>NewGhost<span>SFX</span></li><li><b>D036</b>Aquarius<span>SFX</span></li>
+        <li><b>D037</b>Meltonin<span>SFX</span></li><li><b>D038</b>Moover<span>SFX</span></li><li><b>D039</b>Castalia<span>SFX</span></li>
+        <li><b>D040</b>Quack<span>SEQ</span></li>
+      </ol>
+    </div>
+  </div>
+
+  <h2 id="instalar">Instalar</h2>
+  <ol class="steps">
+    <li><b>Instalador:</b> abra <code>K5K-Setup.exe</code> e siga as telas. Ele instala o aplicativo, cria o atalho no menu Iniciar e, se você marcar, o plugin VST3.</li>
+    <li><b>Portátil:</b> descompacte <code>K5K-win64.zip</code> e abra <code>K5kVirtual.exe</code>. Para usar numa DAW, copie a pasta <code>K5kVirtual.vst3</code> para <code>C:\Program Files\Common Files\VST3</code>.</li>
+    <li>Na primeira abertura, em <b>Options</b>, escolha a saída de áudio e ative o seu teclado em <b>MIDI Inputs</b>. Para menor atraso, use um driver de baixa latência e buffer de 256 amostras ou menos.</li>
+  </ol>
+
+  <h2>Requisitos</h2>
+  <table>
+    <tr><th>Item</th><th>Detalhe</th></tr>
+    <tr><td>Sistema</td><td>Windows 10 ou 11, 64 bits</td></tr>
+    <tr><td>Formatos</td><td>Aplicativo (Standalone) e plugin VST3</td></tr>
+    <tr><td>Controlador</td><td>Qualquer teclado MIDI (opcional; o painel tem teclado na tela)</td></tr>
+  </table>
+
+  <h2>Aviso do Windows</h2>
+  <div class="warn">
+    <h3>SmartScreen e antivírus</h3>
+    <p>O K5K Virtual é gratuito e não tem assinatura digital paga. Na primeira vez, o Windows pode avisar que o arquivo é desconhecido:
+      clique em "Mais informações" e depois em "Executar assim mesmo".</p>
+  </div>
+
+  <footer>
+    <p>K5K Virtual © 2026 Helicleiton · Gratuito, de código fechado. Feito com JUCE.</p>
+    <p>Kawai e K5000 são marcas da Kawai Musical Instruments Mfg. Co., Ltd. Aparecem apenas para indicar o instrumento que inspirou
+      este projeto, que não tem relação com a Kawai nem é endossado por ela.</p>
+    <p><a href="https://www.helicleiton.com/#apps">Mais apps e ferramentas musicais</a></p>
+  </footer>
+</div>
+</body>
+</html>
